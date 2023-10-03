@@ -23,15 +23,27 @@ public class User {
     Long id;
 
     private String name;
+
     private String document;
     private String email;
     private Double balance;
+    private Boolean active;
 
+    
     public User(UserDTO data) {
         this.name = data.name();
         this.document = data.document();
         this.email = data.email();
         this.balance = 0.;
+        this.active = true;
+    }
+    
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     public Long getId() {
