@@ -1,4 +1,4 @@
-package com.challengebackend.challengebackend.infra;
+package com.challengebackend.challengebackend.infra.exceptions;
 
 public class ValidationException extends RuntimeException {
     

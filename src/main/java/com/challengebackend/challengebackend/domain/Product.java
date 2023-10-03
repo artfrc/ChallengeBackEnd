@@ -1,11 +1,17 @@
 package com.challengebackend.challengebackend.domain;
 
+import java.util.Set;
+
 import com.challengebackend.challengebackend.dto.ProductDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -25,6 +31,26 @@ public class Product {
     
     private String name;
     private Double price;
+
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable( name = "product_user",
+                joinColumns = @JoinColumn(name = "product_fk"),
+                inverseJoinColumns = @JoinColumn(name = "user_fk"))
+    private Set<User> usersWhoPurchased;
+    
+    public Product(ProductDTO data) {
+        this.name = data.name();
+        this.price = data.price();
+    }
+
+    public Set<User> getUsersWhoPurchased() {
+        return usersWhoPurchased;
+    }
+
+    public void addNewUser(User user) {
+        this.usersWhoPurchased.add(user);
+    }
     
     public Long getId() {
         return id;
@@ -33,11 +59,7 @@ public class Product {
     public void setId(Long id) {
         this.id = id;
     }
-    
-    public Product(ProductDTO data) {
-        this.name = data.name();
-        this.price = data.price();
-    }
+
 
     public String getName() {
         return name;

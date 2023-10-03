@@ -1,11 +1,14 @@
 package com.challengebackend.challengebackend.domain;
 
+import java.util.Set;
+
 import com.challengebackend.challengebackend.dto.UserDTO;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -29,6 +32,8 @@ public class User {
     private Double balance;
     private Boolean active;
 
+    @ManyToMany(mappedBy = "usersWhoPurchased")
+    private Set<Product> purchasedProducts;
     
     public User(UserDTO data) {
         this.name = data.name();
@@ -38,6 +43,14 @@ public class User {
         this.active = true;
     }
     
+    public Set<Product> getPurchasedProducts() {
+        return purchasedProducts;
+    }
+
+    public void addNewProduct(Product product) {
+        this.purchasedProducts.add(product);
+    }
+
     public Boolean getActive() {
         return active;
     }

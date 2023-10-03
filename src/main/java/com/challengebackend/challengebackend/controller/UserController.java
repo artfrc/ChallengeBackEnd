@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.challengebackend.challengebackend.domain.User;
+import com.challengebackend.challengebackend.dto.PurchasedDTO;
 import com.challengebackend.challengebackend.dto.UpdateUserDTO;
 import com.challengebackend.challengebackend.dto.UserDTO;
-import com.challengebackend.challengebackend.infra.ValidationException;
+import com.challengebackend.challengebackend.infra.exceptions.ValidationException;
+import com.challengebackend.challengebackend.service.ShopService;
 import com.challengebackend.challengebackend.service.UserService;
 
 import jakarta.transaction.Transactional;
@@ -29,6 +31,9 @@ public class UserController {
     
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ShopService shopService;
 
     @GetMapping
     public ResponseEntity<List<User>> getAllUsers() {
@@ -58,6 +63,13 @@ public class UserController {
             throw new ValidationException(e.getMessage());
         }
         return ResponseEntity.ok("User created successfully!");
+    }
+
+    @PostMapping("/purchase")
+    @Transactional
+    public ResponseEntity<String> buyProduct(@RequestBody @Valid PurchasedDTO data) throws Exception {
+        shopService.buyProduct(data);
+        return ResponseEntity.ok("Product purchased successfully!");
     }
 
     @PutMapping

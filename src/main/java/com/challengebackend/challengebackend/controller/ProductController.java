@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.challengebackend.challengebackend.domain.Product;
 import com.challengebackend.challengebackend.dto.ProductDTO;
 import com.challengebackend.challengebackend.dto.UpdateProductDTO;
-import com.challengebackend.challengebackend.infra.ValidationException;
+import com.challengebackend.challengebackend.infra.exceptions.ValidationException;
 import com.challengebackend.challengebackend.service.ProductService;
 
 import jakarta.transaction.Transactional;

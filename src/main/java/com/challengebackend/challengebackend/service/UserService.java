@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.challengebackend.challengebackend.domain.User;
 import com.challengebackend.challengebackend.dto.UpdateUserDTO;
-import com.challengebackend.challengebackend.infra.ValidationUpdateUserException;
+import com.challengebackend.challengebackend.infra.exceptions.ValidationUpdateUserException;
 import com.challengebackend.challengebackend.repository.UserRepository;
 
 @Service
