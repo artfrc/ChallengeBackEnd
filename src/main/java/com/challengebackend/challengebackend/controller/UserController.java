@@ -81,9 +81,9 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity<Exception> deleteUser(@PathVariable Long id) {
-        userService.delete(id);
-        return new ResponseEntity<Exception>(HttpStatus.OK);
+    public ResponseEntity<User> deleteUser(@PathVariable Long id) {
+        User user = userService.delete(id);
+        return ResponseEntity.ok(user);
     }
 
 }
