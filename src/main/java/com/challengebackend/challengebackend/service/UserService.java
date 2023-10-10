@@ -44,6 +44,8 @@ public class UserService {
             throw new ValidationUpdateUserException(e.getMessage());
         }
 
+        System.out.println(">> UPDATE USER HERE!");
+
         return user;
     }
 
@@ -52,18 +54,22 @@ public class UserService {
     }
 
     public List<User> getAllUsers() {
+        System.out.println(">> GET ALL USERS HERE!");
         return userRepository.findAll();
     }
 
     public User getUser(Long id) {
+        System.out.println(">> GET USER HERE!");
         return userRepository.findById(id).get();
     }
 
     public List<User> getActiveUsers() {
+        System.out.println(">> GET ACTIVE USER HERE!");
         return userRepository.findAllByActiveTrue();
     }
 
     public void delete(Long id) {
+        System.out.println(">> DELETE USER HERE!");
         User user = userRepository.findById(id).get();
         user.setActive(false);
     }
