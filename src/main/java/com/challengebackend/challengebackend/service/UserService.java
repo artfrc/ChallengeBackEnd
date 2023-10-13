@@ -3,10 +3,8 @@ package com.challengebackend.challengebackend.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import com.challengebackend.challengebackend.domain.User;
@@ -20,20 +18,14 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Caching (
-        evict = {
-            @CacheEvict(value = "allUsers",allEntries = true),
-            @CacheEvict(value = "usersActive",allEntries = true)
-        }, put = {
-            @CachePut(value = "user", key = "#data.id")
-        }
-    )
+    @CachePut(value = "user", key = "#data.id")
     public User updateUser(UpdateUserDTO data) {
 
         User user = userRepository.findById(data.id()).get();
         
         var previousBalance = user.getBalance();
         var previousActive = user.getActive();
+        var previousPurchasedProducts = user.getPurchasedProducts();
         
         try {
 
@@ -50,9 +42,14 @@ public class UserService {
                 user.setActive(data.active());
             }
 
+            if(data.product() != null) {
+                user.addNewProduct(data.product());
+            }
+
         } catch(Exception e) {
             user.setBalance(previousBalance);
             user.setActive(previousActive);
+            user.setPurchasedProducts(previousPurchasedProducts);
             throw new ValidationUpdateUserException(e.getMessage());
         }
 
@@ -61,17 +58,10 @@ public class UserService {
         return user;
     }
 
-    @Caching(
-        evict = {
-            @CacheEvict(value = "allUsers",allEntries = true),
-            @CacheEvict(value = "usersActive",allEntries = true)
-        }
-    )
     public void save(User user) {
         userRepository.save(user);
     }
 
-    @Cacheable(value = "allUsers")
     public List<User> getAllUsers() {
         System.out.println(">> GET ALL USERS HERE!");
         return userRepository.findAll();
@@ -83,21 +73,12 @@ public class UserService {
         return userRepository.findById(id).get();
     }
 
-    @Cacheable(value = "usersActive")
     public List<User> getActiveUsers() {
         System.out.println(">> GET ACTIVE USER HERE!");
         return userRepository.findAllByActiveTrue();
     }
 
-    @Caching(
-        evict = {
-            @CacheEvict(value = "usersActive",allEntries = true),
-            @CacheEvict(value = "allUsers",allEntries = true)
-        },
-        put = {
-            @CachePut(value = "user", key = "#id")
-        }
-    )
+    @CachePut(value = "user", key = "#id")
     public User delete(Long id) {
         User user = this.getUser(id);
         user.setActive(false);

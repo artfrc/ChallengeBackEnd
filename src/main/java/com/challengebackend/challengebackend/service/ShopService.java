@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.challengebackend.challengebackend.domain.Product;
 import com.challengebackend.challengebackend.domain.User;
 import com.challengebackend.challengebackend.dto.PurchasedDTO;
+import com.challengebackend.challengebackend.dto.UpdateProductDTO;
 import com.challengebackend.challengebackend.dto.UpdateUserDTO;
 import com.challengebackend.challengebackend.infra.exceptions.ValidationUpdateUserException;
 
@@ -28,12 +29,16 @@ public class ShopService {
 
         Product product = productService.getProduct(purchasedDTO.product_fk());
 
-        UpdateUserDTO updateUserDTO = new UpdateUserDTO(user.getId(), -product.getPrice(), null);
+        UpdateUserDTO updateUserDTO = new UpdateUserDTO(user.getId(), -product.getPrice(), null, product);
+        
         userService.updateUser(updateUserDTO);
 
-        user.addNewProduct(product);
-        product.addNewUser(user);
-        
+        UpdateProductDTO updateProductDTO = new UpdateProductDTO(product.getId(), null,user);
+
+        productService.updateProduct(updateProductDTO);
+
+        System.out.println(">> BUY PRODUCT HERE!");
+
     }
 
 }

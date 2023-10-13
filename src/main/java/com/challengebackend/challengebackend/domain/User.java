@@ -35,6 +35,7 @@ public class User {
     @ManyToMany(mappedBy = "usersWhoPurchased")
     private Set<Product> purchasedProducts;
     
+    
     public User(UserDTO data) {
         this.name = data.name();
         this.document = data.document();
@@ -45,6 +46,10 @@ public class User {
     
     public Set<Product> getPurchasedProducts() {
         return purchasedProducts;
+    }
+    
+    public void setPurchasedProducts(Set<Product> purchasedProducts) {
+        this.purchasedProducts = purchasedProducts;
     }
 
     public void addNewProduct(Product product) {

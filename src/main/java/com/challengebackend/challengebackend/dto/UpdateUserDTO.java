@@ -2,6 +2,8 @@ package com.challengebackend.challengebackend.dto;
 
 import jakarta.validation.constraints.NotNull;
 
+import com.challengebackend.challengebackend.domain.Product;
+
 public record UpdateUserDTO(
 
     @NotNull(message = "Empty id field")
@@ -9,7 +11,9 @@ public record UpdateUserDTO(
 
     Double balance,
 
-    Boolean active
+    Boolean active,
+
+    Product product
 
 ) {
     

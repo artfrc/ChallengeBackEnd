@@ -39,13 +39,18 @@ public class Product {
                 inverseJoinColumns = @JoinColumn(name = "user_fk"))
     private Set<User> usersWhoPurchased;
     
+    
     public Product(ProductDTO data) {
         this.name = data.name();
         this.price = data.price();
     }
-
+    
     public Set<User> getUsersWhoPurchased() {
         return usersWhoPurchased;
+    }
+    
+    public void setUsersWhoPurchased(Set<User> usersWhoPurchased) {
+        this.usersWhoPurchased = usersWhoPurchased;
     }
 
     public void addNewUser(User user) {
