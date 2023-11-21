@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 public class CacheConfig {
 
     @Bean
-    public Caffeine caffeine() {
+    public Caffeine<?,?> caffeine() {
         return Caffeine.newBuilder()
             .expireAfterAccess(5, TimeUnit.DAYS)
             .initialCapacity(10);
