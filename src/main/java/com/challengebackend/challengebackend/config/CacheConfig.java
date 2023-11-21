@@ -21,7 +21,6 @@ public class CacheConfig {
             .initialCapacity(10);
     }
 
-    
     @Bean
     public CacheManager cacheManager(Caffeine caffeine) {
         CaffeineCacheManager caffeineCacheManager = new CaffeineCacheManager();
