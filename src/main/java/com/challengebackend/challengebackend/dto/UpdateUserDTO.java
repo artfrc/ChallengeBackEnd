@@ -2,7 +2,7 @@ package com.challengebackend.challengebackend.dto;
 
 import jakarta.validation.constraints.NotNull;
 
-import com.challengebackend.challengebackend.domain.Product;
+import com.dependenceapi.domain.Product;
 
 public record UpdateUserDTO(
 

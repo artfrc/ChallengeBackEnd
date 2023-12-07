@@ -1,6 +1,6 @@
 package com.challengebackend.challengebackend.dto;
 
-import com.challengebackend.challengebackend.domain.User;
+import com.dependenceapi.domain.User;
 
 import jakarta.validation.constraints.NotNull;
 

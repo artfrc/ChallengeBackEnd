@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.challengebackend.challengebackend.domain.Product;
+import com.dependenceapi.domain.Product;
 import com.challengebackend.challengebackend.dto.ProductDTO;
 import com.challengebackend.challengebackend.dto.UpdateProductDTO;
 import com.challengebackend.challengebackend.infra.exceptions.ValidationException;
@@ -45,7 +45,7 @@ public class ProductController {
     @PostMapping
     @Transactional
     public ResponseEntity<String> registerProduct(@RequestBody @Valid ProductDTO data) {
-        Product product = new Product(data);
+        Product product = new Product(data.name(),data.price());
         try {
             productService.save(product);
         } catch(Exception e) {

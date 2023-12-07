@@ -8,10 +8,10 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import com.challengebackend.challengebackend.domain.Product;
+import com.dependenceapi.domain.Product;
 import com.challengebackend.challengebackend.dto.UpdateProductDTO;
 import com.challengebackend.challengebackend.infra.exceptions.ValidationUpdateUserException;
-import com.challengebackend.challengebackend.repository.ProductRepository;
+import com.dependenceapi.repository.ProductRepository;
 
 @Service
 public class ProductService {

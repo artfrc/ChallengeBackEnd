@@ -7,10 +7,10 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import com.challengebackend.challengebackend.domain.User;
+import com.dependenceapi.domain.User;
 import com.challengebackend.challengebackend.dto.UpdateUserDTO;
 import com.challengebackend.challengebackend.infra.exceptions.ValidationUpdateUserException;
-import com.challengebackend.challengebackend.repository.UserRepository;
+import com.dependenceapi.repository.UserRepository;
 
 @Service
 public class UserService {

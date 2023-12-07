@@ -3,8 +3,8 @@ package com.challengebackend.challengebackend.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.challengebackend.challengebackend.domain.Product;
-import com.challengebackend.challengebackend.domain.User;
+import com.dependenceapi.domain.Product;
+import com.dependenceapi.domain.User;
 import com.challengebackend.challengebackend.dto.PurchasedDTO;
 import com.challengebackend.challengebackend.dto.UpdateProductDTO;
 import com.challengebackend.challengebackend.dto.UpdateUserDTO;

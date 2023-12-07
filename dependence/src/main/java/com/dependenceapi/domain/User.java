@@ -1,8 +1,6 @@
-package com.challengebackend.challengebackend.domain;
+package com.dependenceapi.domain;
 
 import java.util.Set;
-
-import com.challengebackend.challengebackend.dto.UserDTO;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,10 +34,10 @@ public class User {
     private Set<Product> purchasedProducts;
     
     
-    public User(UserDTO data) {
-        this.name = data.name();
-        this.document = data.document();
-        this.email = data.email();
+    public User(String name, String document, String email) {
+        this.name = name;
+        this.document = document;
+        this.email = email;
         this.balance = 0.;
         this.active = true;
     }

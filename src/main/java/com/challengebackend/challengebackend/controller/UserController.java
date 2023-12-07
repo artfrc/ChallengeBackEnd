@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.challengebackend.challengebackend.domain.User;
+import com.dependenceapi.domain.User;
+
 import com.challengebackend.challengebackend.dto.PurchasedDTO;
 import com.challengebackend.challengebackend.dto.UpdateUserDTO;
 import com.challengebackend.challengebackend.dto.UserDTO;
@@ -55,7 +56,7 @@ public class UserController {
     @PostMapping
     @Transactional
     public ResponseEntity<String> registerUser(@RequestBody @Valid UserDTO data) {
-        User user = new User(data);
+        User user = new User(data.name(), data.document(), data.email());
         try {
             userService.save(user);
         } catch(Exception e) {

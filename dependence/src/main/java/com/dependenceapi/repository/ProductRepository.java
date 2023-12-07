@@ -1,9 +1,11 @@
-package com.challengebackend.challengebackend.repository;
+package com.dependenceapi.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import com.challengebackend.challengebackend.domain.Product;
+import com.dependenceapi.domain.Product;
 
+@Repository
 public interface ProductRepository extends JpaRepository<Product,Long> {
     
 }

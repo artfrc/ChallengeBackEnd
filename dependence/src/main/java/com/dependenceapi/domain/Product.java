@@ -1,8 +1,7 @@
-package com.challengebackend.challengebackend.domain;
+package com.dependenceapi.domain;
 
 import java.util.Set;
 
-import com.challengebackend.challengebackend.dto.ProductDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -40,9 +39,9 @@ public class Product {
     private Set<User> usersWhoPurchased;
     
     
-    public Product(ProductDTO data) {
-        this.name = data.name();
-        this.price = data.price();
+    public Product(String name, Double price) {
+        this.name = name;
+        this.price = price;
     }
     
     public Set<User> getUsersWhoPurchased() {
