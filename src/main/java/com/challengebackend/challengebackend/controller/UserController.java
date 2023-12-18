@@ -25,6 +25,7 @@ import com.challengebackend.challengebackend.service.UserService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -68,6 +69,7 @@ public class UserController {
     @PostMapping("/purchase")
     @Transactional
     public ResponseEntity<String> buyProduct(@RequestBody @Valid PurchasedDTO data) throws Exception {
+        
         shopService.buyProduct(data);
         return ResponseEntity.ok("Product purchased successfully!");
     }

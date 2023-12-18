@@ -15,7 +15,13 @@ import com.challengebackend.challengebackend.dto.ValidationExceptionDTO;
 
 @RestControllerAdvice
 public class HandleErrors {
-    
+
+    @ExceptionHandler(ValidationExternalService.class)
+    public ResponseEntity<ValidationExceptionDTO> errorExternalService(ValidationExternalService ex) {
+        ValidationExceptionDTO exceptionDTO = new ValidationExceptionDTO(ex.getMessage(), "400");
+        return ResponseEntity.status(400).body(exceptionDTO);
+    }
+
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity<ValidationExceptionDTO> handleDuplicateData(ValidationException ex) {
         ValidationExceptionDTO exceptionDTO = new ValidationExceptionDTO("Data entered already exists in the database!", "409");
